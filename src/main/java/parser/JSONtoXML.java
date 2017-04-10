@@ -2,7 +2,6 @@ package parser;
 
 import java.util.ArrayList;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.XML;
 

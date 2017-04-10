@@ -34,11 +34,11 @@ public class XMLReader
 	private void parse()
 	{
 
-		URI uri = stringPathToURI(pathtoxml);
+		//URI uri = stringPathToURI(pathtoxml);
 
 		try
 		{
-			File xmlfile = new File(uri.toString());
+			File xmlfile = new File(URIParser.toURI(pathtoxml));
 			DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbfactory.newDocumentBuilder();
 			Document document = dBuilder.parse(xmlfile);
@@ -90,36 +90,15 @@ public class XMLReader
 			return writer.getBuffer().toString();
 		} catch (TransformerConfigurationException e)
 		{
-			System.err.println(
-					"TransformerConfigurationException: Something went wrong while creating transformer Object");
+			System.err.println("TransformerConfigurationException: Something went wrong while creating transformer Object");
 			e.printStackTrace();
 			return "-1";
 		} catch (TransformerException e)
 		{
 			System.err.println("TransformerException: Something went wrong while Transforming xml to string!");
 			e.printStackTrace();
-			return "-2";
+			return "-1";
 		}
 
 	}
-
-	private URI stringPathToURI(String pathtoxml)
-	{
-
-		pathtoxml = pathtoxml.replace("\\", "/");
-
-		try
-		{
-
-			return new URI(pathtoxml);
-
-		} catch (URISyntaxException e)
-		{
-			System.err.println("Could not Parse Path (String) to URI");
-			e.printStackTrace();
-			return null;
-		}
-
-	}
-
 }
