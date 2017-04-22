@@ -1,7 +1,10 @@
 package parser;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -9,6 +12,7 @@ import java.net.URISyntaxException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -18,17 +22,18 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 public class XMLReader
 {
-	private String pathtoxml;
+	private String bufferedString;
 	private Document xmldoc;
 
-	public XMLReader(String pathtoxml)
+	public XMLReader(String bufferedString)
 	{
-		this.pathtoxml = pathtoxml;
-		parse();
+            this.bufferedString = bufferedString;
+            parse();
 	}
 
 	private void parse()
@@ -38,13 +43,14 @@ public class XMLReader
 
 		try
 		{
-			File xmlfile = new File(URIParser.toURI(pathtoxml));
-			DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbfactory.newDocumentBuilder();
-			Document document = dBuilder.parse(xmlfile);
-			document.getDocumentElement().normalize();
-			setXMLDocument(document);
-			// return document;
+                   
+                    DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
+                    DocumentBuilder dBuilder = dbfactory.newDocumentBuilder();
+                    Document document = dBuilder.parse(bufferedString);
+                    document.getDocumentElement().normalize();
+                    setXMLDocument(document);
+ 
+                    // return document;
 		} catch (ParserConfigurationException e)
 		{
 			System.err.println("ParserConfiguratuionException: Something went terrible wrong!");
@@ -72,7 +78,7 @@ public class XMLReader
 		this.xmldoc = xmldoc;
 	}
 
-	public Document getXMLDocument()
+	private Document getXMLDocument()
 	{
 		return xmldoc;
 	}

@@ -1,5 +1,6 @@
 package parser;
 
+import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -11,18 +12,26 @@ public class URIParser
 
 		try
 		{
-			if(location.contains("http"))
+			if(location.startsWith("http"))
 			{
 				return new URI(location);
 			}
-			else if(location.contains("ftp"))
+                        else if(location.startsWith("www"))
+                        {
+                            return new URI("http://" + location);
+                        }
+			else if(location.startsWith("ftp"))
 			{
 				return new URI(location);
 			}
-			else
+                        else if(new File(location).isFile())
 			{
 				return new URI("file:///"+location);
 			}
+                        else
+                        {
+                            return new URI(location);
+                        }
 		} 
 		catch (URISyntaxException e)
 		{
