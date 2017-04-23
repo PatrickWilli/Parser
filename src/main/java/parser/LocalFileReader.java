@@ -30,7 +30,7 @@ public class LocalFileReader
         try
         {
             BufferedReader br = new BufferedReader(new FileReader(uri.toString()));
-            BufferString.setBufferedReader(br);
+            Buffer.setBufferedReader(br);
         } 
         catch (FileNotFoundException ex)
         {

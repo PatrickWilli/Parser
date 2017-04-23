@@ -22,7 +22,7 @@ public class FormatDetector
     
     public static String getFileFormat()
     {
-        String bufferedString = BufferString.getBufferedString();
+        String bufferedString = Buffer.getBufferedString();
         // for(String line; (line = br.readLine()) != null; brAsString += line)
         //System.out.println(brAsString);
         if(isXML(bufferedString))

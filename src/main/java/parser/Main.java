@@ -34,10 +34,10 @@ public class Main
         switch(FormatDetector.getFileFormat())
         {
             case "json": 
-                jsonreader = new JSONReader(BufferString.getBufferedString());
+                jsonreader = new JSONReader(Buffer.getBufferedString());
                 break;
             case "xml":
-                xmlreader = new XMLReader(BufferString.getBufferedString());
+                xmlreader = new XMLReader(Buffer.getBufferedString());
                 break;
             case "unknown":
                 break;

@@ -40,25 +40,16 @@ public class JSONReader
                 {
                     jsonobjects.add((JSONObject)jsonarray.get(i));
                 }
-                setJSONObjects(jsonobjects);
+                Buffer.setJSONObjects(jsonobjects);
             }
             else
             {
                 tokener.back();
                 jsonobjects.add(new JSONObject(tokener));
-                setJSONObjects(jsonobjects);
+                Buffer.setJSONObjects(jsonobjects);
             }
            
 	}
-	
-	private void setJSONObjects(ArrayList<JSONObject> objects)
-	{
-		this.jsonobjects = objects;
-	}
-	
-	public ArrayList<JSONObject> getJSONObjects()
-	{
-		return jsonobjects;
-	}
+
 	
 }

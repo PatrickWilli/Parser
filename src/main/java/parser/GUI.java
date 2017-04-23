@@ -5,6 +5,7 @@
  */
 package parser;
 
+import java.io.FileWriter;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
@@ -253,7 +254,7 @@ public class GUI extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jTabbedPane1StateChanged
         if(jTabbedPane1.getSelectedIndex() == 1)
         {
-             if(BufferString.getBufferedString() == null)
+             if(Buffer.getBufferedString() == null)
              {
                   JOptionPane.showMessageDialog(null, "Please Load some data first!");
                   jTabbedPane1.setSelectedIndex(0);
@@ -278,13 +279,44 @@ public class GUI extends javax.swing.JFrame
 
     private void parseTab_start_buttonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_parseTab_start_buttonActionPerformed
     {//GEN-HEADEREND:event_parseTab_start_buttonActionPerformed
-        
+        if(json_parse_from_radio_button.isSelected() && xml_parse_to_radio_button.isSelected())
+        {
+            if(write_to_file_textfield.getText().trim().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Please select a file to write first.");
+                return;
+            }
+            if(Buffer.getJSONObjects() == null)
+            {
+                JOptionPane.showMessageDialog(null, "No JSON data found");
+                return;
+            }
+            
+            JSONtoXML jsontoxml = new JSONtoXML(Buffer.getJSONObjects());
+            WriteToFile wtf = new WriteToFile(write_to_file_textfield.getText(), jsontoxml.getXMLString());
+            
+            if(wtf.writeToFile())
+            {
+                JOptionPane.showMessageDialog(null, "Successfully writed to File!");
+            }
+            
+            
+            /*
+            TODO: WriteToFile klasse erstellen, jsontoxml und xmltojson 
+            */
+            
+        }
     }//GEN-LAST:event_parseTab_start_buttonActionPerformed
 
     private void write_to_file_buttonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_write_to_file_buttonActionPerformed
     {//GEN-HEADEREND:event_write_to_file_buttonActionPerformed
         JFileChooser chooser = new JFileChooser();
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        //chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int closeoption = chooser.showOpenDialog(null);
+        if(closeoption == JFileChooser.APPROVE_OPTION)
+        {
+            write_to_file_textfield.setText(chooser.getSelectedFile().getAbsolutePath());
+        }
     }//GEN-LAST:event_write_to_file_buttonActionPerformed
 
     /**

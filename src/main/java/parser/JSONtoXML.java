@@ -8,20 +8,35 @@ import org.json.XML;
 public class JSONtoXML
 {
 	private ArrayList<JSONObject> jsonobjects;
+        private String xml = "";
 	
 	public JSONtoXML(ArrayList<JSONObject> jsonobjects)
 	{
 		this.jsonobjects = jsonobjects;
+                jsontoxml();
 	}
 		
-	public String jsontoxml()
+	private void jsontoxml()
 	{
-		String xml = "";
+		
 		
 		for(JSONObject jsobj : jsonobjects)
 		{
-			xml += XML.toString(jsobj);
-		}
-		return xml;
+			xml += XML.toString(jsobj) + "\n";
+                        
+                        System.out.println(xml);
+		}	
+                setXMLString(xml);
+                
 	}
+        
+        private void setXMLString(String xml)
+        {
+            this.xml = xml;
+        }
+        
+        public String getXMLString()
+        {
+            return xml;
+        }
 }

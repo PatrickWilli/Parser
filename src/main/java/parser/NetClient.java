@@ -46,7 +46,7 @@ public class NetClient
             }
 
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            BufferString.setBufferedReader(br);
+            Buffer.setBufferedReader(br);
 
         } catch (MalformedURLException ex)
         {
