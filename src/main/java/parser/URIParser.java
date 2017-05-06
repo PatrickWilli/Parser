@@ -9,12 +9,12 @@ public class URIParser
 	public static URI toURI(String location)
 	{
 		location = location.replace("\\", "/");
-
+                //System.out.println(location);
 		try
 		{
-			if(location.startsWith("http"))
+			if(location.startsWith("http") || location.startsWith("https"))
 			{
-				return new URI(location);
+                            return new URI(location);
 			}
                         else if(location.startsWith("www"))
                         {
@@ -22,11 +22,11 @@ public class URIParser
                         }
 			else if(location.startsWith("ftp"))
 			{
-				return new URI(location);
+                            return new URI(location);
 			}
-                        else if(new File(location).isFile())
+                        else if(new File(location).exists())
 			{
-				return new URI("file:///"+location);
+                            return new URI("file:///"+location);
 			}
                         else
                         {

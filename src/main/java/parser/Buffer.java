@@ -8,8 +8,6 @@ package parser;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
@@ -21,6 +19,7 @@ public class Buffer
 {
     private static String bufferedString;
     private static ArrayList<JSONObject> jsonobjectslist; 
+    private static String xml;
     
     public static void setBufferedReader(BufferedReader br)
     {
@@ -30,7 +29,8 @@ public class Buffer
         } 
         catch (IOException ex)
         {
-            Logger.getLogger(Buffer.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Could not set the fetched data");
+            ex.printStackTrace();
         }
     }
     
@@ -52,5 +52,15 @@ public class Buffer
     public static ArrayList<JSONObject> getJSONObjects()
     {
         return jsonobjectslist;
+    }
+    
+    public static void setXMLString(String xmlstring)
+    {
+        xml = xmlstring;
+    }
+    
+    public static String getXMLstring()
+    {
+        return xml;
     }
 }

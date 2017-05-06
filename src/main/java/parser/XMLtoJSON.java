@@ -1,19 +1,31 @@
 package parser;
 
 import org.json.XML;
-public class XMLtoJSON
+import parser.interfaces.Converter;
+
+public class XMLtoJSON implements Converter
 {
-    private String parsedXML;
+    private String xml;
+    private String jsonstring;
 
-
-    public XMLtoJSON(String parsedXML)
+    public XMLtoJSON(String xml)
     {
-        this.parsedXML = parsedXML;
+        this.xml = xml;
     }
 
-    public String xmltojson()
+    public void convert()
     {
-        return XML.toJSONObject(parsedXML).toString();
+         setJsonString(XML.toJSONObject(xml).toString());
     }
+    
+    private void setJsonString(String jsonstring)
+    {
+        this.jsonstring = jsonstring;
+    }
+    public String getConvertedString()
+    {
+        return jsonstring;
+    }
+    
     
 }

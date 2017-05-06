@@ -5,11 +5,9 @@
  */
 package parser;
 
-import java.io.FileWriter;
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -237,12 +235,7 @@ public class GUI extends javax.swing.JFrame
             JOptionPane.showMessageDialog(null, "Please enter an valid path!");
             return;
         }
-        
         Main.start(path_or_url_textfield.getText().trim());
-        
-        /*
-        TODO: Parser tab, write to file tab, (write to db tab)
-        */
     }//GEN-LAST:event_load_data_startbuttonActionPerformed
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTabbedPane1MouseClicked
@@ -283,7 +276,7 @@ public class GUI extends javax.swing.JFrame
         {
             if(write_to_file_textfield.getText().trim().isEmpty())
             {
-                JOptionPane.showMessageDialog(null, "Please select a file to write first.");
+                JOptionPane.showMessageDialog(null, "Please select a file to write first");
                 return;
             }
             if(Buffer.getJSONObjects() == null)
@@ -293,19 +286,47 @@ public class GUI extends javax.swing.JFrame
             }
             
             JSONtoXML jsontoxml = new JSONtoXML(Buffer.getJSONObjects());
-            WriteToFile wtf = new WriteToFile(write_to_file_textfield.getText(), jsontoxml.getXMLString());
+            jsontoxml.convert();
+            WriteToFile wtf = new WriteToFile(write_to_file_textfield.getText(), jsontoxml.getConvertedString());
             
             if(wtf.writeToFile())
             {
-                JOptionPane.showMessageDialog(null, "Successfully writed to File!");
+                JOptionPane.showMessageDialog(null, "Successfully wrote to File!");
+            }
+            else
+            {
+               JOptionPane.showMessageDialog(null, "Problems writing to file"); 
+            }
+
+        }
+        if(xml_parse_from_radio_button.isSelected() && json_parse_to_radio_button.isSelected())
+        {
+            if(write_to_file_textfield.getText().trim().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Please select a file to write first");
+                return;
+            }
+            if(Buffer.getXMLstring() == null)
+            {
+                JOptionPane.showMessageDialog(null, "No XML data found");
+                return;
             }
             
+            XMLtoJSON xmltojson = new XMLtoJSON(Buffer.getXMLstring());
+            xmltojson.convert();
+            WriteToFile wtf = new WriteToFile(write_to_file_textfield.getText(), xmltojson.getConvertedString());
             
-            /*
-            TODO: WriteToFile klasse erstellen, jsontoxml und xmltojson 
-            */
+            if(wtf.writeToFile())
+            {
+                JOptionPane.showMessageDialog(null, "Successfully wrote to File!");
+            }
+            else
+            {
+               JOptionPane.showMessageDialog(null, "Problems writing to file"); 
+            }
             
         }
+        
     }//GEN-LAST:event_parseTab_start_buttonActionPerformed
 
     private void write_to_file_buttonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_write_to_file_buttonActionPerformed

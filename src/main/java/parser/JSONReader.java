@@ -1,19 +1,14 @@
 package parser;
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.apache.commons.io.IOUtils;
 
+import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import parser.interfaces.Reader;
 
-public class JSONReader
+public class JSONReader implements Reader
 {
 	private String bufferedString;
 	private JSONArray jsonarray;
@@ -21,11 +16,10 @@ public class JSONReader
 
 	public JSONReader(String bufferedString)
 	{
-		this.bufferedString = bufferedString;
-		parse();
+            this.bufferedString = bufferedString;
 	}
 
-	private void parse()
+	public void read()
 	{
             JSONTokener tokener;
             tokener = new JSONTokener(bufferedString);

@@ -5,12 +5,7 @@
  */
 package parser;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.json.JSONObject;
-import org.apache.commons.io.IOUtils;
+
 
 /**
  *
@@ -18,13 +13,10 @@ import org.apache.commons.io.IOUtils;
  */
 public class FormatDetector
 {
-    
-    
     public static String getFileFormat()
     {
         String bufferedString = Buffer.getBufferedString();
-        // for(String line; (line = br.readLine()) != null; brAsString += line)
-        //System.out.println(brAsString);
+
         if(isXML(bufferedString))
         {
             return "xml";

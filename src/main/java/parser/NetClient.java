@@ -11,9 +11,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.net.ssl.HttpsURLConnection;
+import javax.swing.JOptionPane;
 import javax.xml.ws.http.HTTPException;
 
 /**
@@ -30,7 +29,14 @@ public class NetClient
     public NetClient(URI uri)
     {
         this.uri = uri;
-        fetchFromHttp();
+        if(this.uri.toString().startsWith("https"))
+        {
+            fetchFromHttps();
+        }
+        else
+        {
+            fetchFromHttp();
+        }
     }
 
     private void fetchFromHttp()
@@ -45,17 +51,48 @@ public class NetClient
                 throw new HTTPException(conn.getResponseCode());
             }
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             Buffer.setBufferedReader(br);
 
         } catch (MalformedURLException ex)
         {
             System.err.println("MalformedURLException: Please check your URL Syntax");
             ex.printStackTrace();
-        } catch (IOException ex)
+        } 
+        catch (IOException ex)
         {
-            System.err.println("IOException: Could not open Connection to: " + uri.toString());
+            System.err.println("IOException or UnkownHostException: Could not open Connection to: " + uri.toString());
+            JOptionPane.showMessageDialog(null, "Could not connect to URL: " + uri.toString());
             ex.printStackTrace();
         }
+        
+    }
+    private void fetchFromHttps()
+    {
+             try
+        {
+            HttpsURLConnection conn = (HttpsURLConnection)uri.toURL().openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json, application/xml");
+            if (conn.getResponseCode() != HTTP_STATUS_OK)
+            {
+                throw new HTTPException(conn.getResponseCode());
+            }
+
+            br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            Buffer.setBufferedReader(br);
+
+        } catch (MalformedURLException ex)
+        {
+            System.err.println("MalformedURLException: Please check your URL Syntax");
+            ex.printStackTrace();
+        } 
+        catch (IOException ex)
+        {
+            System.err.println("IOException or UnkownHostException: Could not open Connection to: " + uri.toString());
+            JOptionPane.showMessageDialog(null, "Could not connect to URL: " + uri.toString());
+            ex.printStackTrace();
+        }
+        
     }
 }

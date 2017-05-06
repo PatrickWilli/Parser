@@ -5,12 +5,10 @@
  */
 package parser;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  *
  * @author phamm
@@ -29,12 +27,14 @@ public class LocalFileReader
     {
         try
         {
-            BufferedReader br = new BufferedReader(new FileReader(uri.toString()));
+            //System.out.println(uri);
+            BufferedReader br = new BufferedReader(new FileReader(new File(uri)));
             Buffer.setBufferedReader(br);
         } 
         catch (FileNotFoundException ex)
         {
             System.err.println("FileNotFoundException: File not found");
+            ex.printStackTrace();
         }
     }
 }

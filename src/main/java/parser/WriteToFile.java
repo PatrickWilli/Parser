@@ -8,8 +8,6 @@ package parser;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,7 +21,6 @@ public class WriteToFile
     
     public WriteToFile(String path, String content)
     {
-        //this.path = path;
         this.content = content;
         this.file = new File(path);
         createFileifNotExists();
@@ -61,7 +58,6 @@ public class WriteToFile
             System.err.println("Cannot write to file!");
             ex.printStackTrace();
             return false;
-            
         }
     }
 }
