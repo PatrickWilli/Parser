@@ -6,11 +6,16 @@
 package parser;
 
 
-
 /**
  *
  * @author phamm
  */
+import com.opencsv.CSVReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class FormatDetector
 {
     public static String getFileFormat()
@@ -24,6 +29,10 @@ public class FormatDetector
         else if(isJson(bufferedString))
         {
             return "json";
+        }
+        else if(isCSV(bufferedString))
+        {
+            return "csv";
         }
         else
         {
@@ -56,5 +65,28 @@ public class FormatDetector
         {
             return false;
         }
+    }
+    
+    private static Boolean isCSV(String brasString)
+    { 
+        try
+        {
+            CSVReader reader = new CSVReader(new StringReader(brasString));
+            reader.readAll();
+            return true; //wenn tatsächlich CSV file und delimeter = ,
+        } catch (IOException io)
+        {
+            try
+            {
+                CSVReader reader = new CSVReader(new StringReader(brasString), ';');
+                reader.readAll();
+                return true; //wenn tatsächlich CSV file und delimter = ;
+            }
+            catch(IOException ioe)
+            {
+                return false; //keine CSV file
+            }
+        }
+       
     }
 }

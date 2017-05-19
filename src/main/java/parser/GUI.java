@@ -6,6 +6,8 @@
 package parser;
 
 
+import parser.database.PrepareForDB;
+import parser.database.LoadtoDB;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -51,6 +53,28 @@ public class GUI extends javax.swing.JFrame
         write_to_file_textfield = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         write_to_file_button = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        db_host_textfield = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        db_port_textfield = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        db_csvpreview_textarea = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
+        db_database_textfield = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        db_username_textfield = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        db_loadtodb_button = new javax.swing.JButton();
+        db_password_textfield = new javax.swing.JTextField();
+        db_description_textfield = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        fetchfromdb_listtables_button = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        fetchfromdb_textarea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("mainfraim"); // NOI18N
@@ -213,6 +237,160 @@ public class GUI extends javax.swing.JFrame
 
         jTabbedPane1.addTab("Parse", jPanel2);
 
+        jPanel4.setToolTipText("");
+
+        jLabel4.setText("Host");
+
+        jLabel5.setText("Port");
+
+        db_csvpreview_textarea.setEditable(false);
+        db_csvpreview_textarea.setColumns(20);
+        db_csvpreview_textarea.setRows(5);
+        jScrollPane1.setViewportView(db_csvpreview_textarea);
+
+        jLabel6.setText("CSV Preview");
+
+        jLabel7.setText("Database");
+
+        jLabel8.setText("Username");
+
+        jLabel9.setText("Password");
+
+        db_loadtodb_button.setText("Load into DB");
+        db_loadtodb_button.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                db_loadtodb_buttonActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Description");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(db_host_textfield, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(0, 19, Short.MAX_VALUE))
+                            .addComponent(db_port_textfield))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(db_database_textfield, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(db_username_textfield, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(db_password_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(78, 78, 78))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel9)
+                                .addGap(69, 69, 69))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(db_loadtodb_button)))
+                        .addContainerGap())
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(db_description_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(db_host_textfield)
+                            .addComponent(db_port_textfield)
+                            .addComponent(db_database_textfield)
+                            .addComponent(db_username_textfield)
+                            .addComponent(db_password_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(2, 2, 2)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(db_description_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(db_loadtodb_button))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("CSV to DB", jPanel4);
+
+        jCheckBox1.setText("use connection details from CSV to DB tab");
+
+        fetchfromdb_listtables_button.setText("List Tables");
+        fetchfromdb_listtables_button.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                fetchfromdb_listtables_buttonActionPerformed(evt);
+            }
+        });
+
+        fetchfromdb_textarea.setColumns(20);
+        fetchfromdb_textarea.setRows(5);
+        jScrollPane3.setViewportView(fetchfromdb_textarea);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(0, 223, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(fetchfromdb_listtables_button, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fetchfromdb_listtables_button)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Fetch from DB", jPanel5);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -251,9 +429,16 @@ public class GUI extends javax.swing.JFrame
              {
                   JOptionPane.showMessageDialog(null, "Please Load some data first!");
                   jTabbedPane1.setSelectedIndex(0);
+                  return;
              }
              else
              {
+                 if(FormatDetector.getFileFormat().equals("csv"))
+                 {
+                     JOptionPane.showMessageDialog(null, "Cannot Parse CSV to JSON/XML. Switching to CSV to DB tab");
+                     jTabbedPane1.setSelectedIndex(2);
+                     return;
+                 }
                  if(FormatDetector.getFileFormat().equals("json"))
                   {
                       json_parse_from_radio_button.doClick();
@@ -265,6 +450,24 @@ public class GUI extends javax.swing.JFrame
                      json_parse_to_radio_button.doClick();
                  }
              }
+        }
+        if(jTabbedPane1.getSelectedIndex() == 2)
+        {
+            if(Buffer.getBufferedString() == null)
+            {
+                JOptionPane.showMessageDialog(null, "Please Load some data first!");
+                jTabbedPane1.setSelectedIndex(0);
+                return;
+            }
+            if(!FormatDetector.getFileFormat().equals("csv"))
+            {
+                JOptionPane.showMessageDialog(null, "File Format is not CSV. Switching to Parsing tab.");
+                jTabbedPane1.setSelectedIndex(1);
+                return;
+            }
+            
+            db_csvpreview_textarea.setText(Buffer.getBufferedString());
+            
         }
         
        
@@ -340,6 +543,54 @@ public class GUI extends javax.swing.JFrame
         }
     }//GEN-LAST:event_write_to_file_buttonActionPerformed
 
+    private void db_loadtodb_buttonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_db_loadtodb_buttonActionPerformed
+    {//GEN-HEADEREND:event_db_loadtodb_buttonActionPerformed
+        if(db_host_textfield.getText().trim().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "You have to specify an host");
+            return;
+        }
+        else if(db_port_textfield.getText().trim().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "You have to specify an port");
+            return;
+        }
+        else if(db_database_textfield.getText().trim().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "You have to specify an Database");
+            return;
+        }
+        else if(db_username_textfield.getText().trim().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "You have to specify an username");
+            return;
+        }
+        else if(db_description_textfield.getText().trim().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Please enter a description");
+            return;
+        }
+        
+        String host = db_host_textfield.getText().trim();
+        String port = db_port_textfield.getText().trim();
+        String database = db_database_textfield.getText().trim();
+        String username = db_username_textfield.getText().trim();
+        String password = db_password_textfield.getText().trim();
+        String description = db_description_textfield.getText().trim();
+        LoadtoDB loadtodb = new LoadtoDB(host, port, database, username, password, description);
+        if(loadtodb.persist())
+        {
+            JOptionPane.showMessageDialog(null, "Successfully load to DB!");
+        }
+    }//GEN-LAST:event_db_loadtodb_buttonActionPerformed
+
+    private void fetchfromdb_listtables_buttonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_fetchfromdb_listtables_buttonActionPerformed
+    {//GEN-HEADEREND:event_fetchfromdb_listtables_buttonActionPerformed
+        //TODO: BIG refactoring. 
+        //PrepareForDB preparefordb = new PrepareForDB(db_host_textfield.getText().trim(), db_port_textfield.getText().trim(), db_database_textfield.getText().trim(), db_username_textfield.getText().trim(), String password = db_password_textfield.getText().trim());
+        
+    }//GEN-LAST:event_fetchfromdb_listtables_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -387,12 +638,34 @@ public class GUI extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea db_csvpreview_textarea;
+    private javax.swing.JTextField db_database_textfield;
+    private javax.swing.JTextField db_description_textfield;
+    private javax.swing.JTextField db_host_textfield;
+    private javax.swing.JButton db_loadtodb_button;
+    private javax.swing.JTextField db_password_textfield;
+    private javax.swing.JTextField db_port_textfield;
+    private javax.swing.JTextField db_username_textfield;
+    private javax.swing.JButton fetchfromdb_listtables_button;
+    private javax.swing.JTextArea fetchfromdb_textarea;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JRadioButton json_parse_from_radio_button;
     private javax.swing.JRadioButton json_parse_to_radio_button;

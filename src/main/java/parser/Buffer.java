@@ -5,6 +5,7 @@
  */
 package parser;
 
+import com.opencsv.CSVReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class Buffer
     private static String bufferedString;
     private static ArrayList<JSONObject> jsonobjectslist; 
     private static String xml;
+    private static String csvdata;
     
     public static void setBufferedReader(BufferedReader br)
     {
@@ -62,5 +64,15 @@ public class Buffer
     public static String getXMLstring()
     {
         return xml;
+    }
+    
+    public static void setCSVReader(String csv)
+    {
+        csvdata = csv;
+    }
+    
+    public static String getCSVReader()
+    {
+        return csvdata;
     }
 }
