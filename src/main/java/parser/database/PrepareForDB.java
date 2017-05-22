@@ -16,6 +16,7 @@ import org.eclipse.persistence.config.PersistenceUnitProperties;
  *
  * @author phamm
  */
+
 public class PrepareForDB
 {
     private EntityManagerFactory emfactory;
@@ -38,9 +39,7 @@ public class PrepareForDB
         props.put(PersistenceUnitProperties.JDBC_PASSWORD, password);
         props.put(PersistenceUnitProperties.SCHEMA_GENERATION_DATABASE_ACTION, "create");
     }
-    /*
-    Beim klick auf "Write to DB" sollen dB, user, password genommen werden und die DB forbereitet.
-    */
+  
     public EntityManager getEntityManager()
     {
         return entitymanager;

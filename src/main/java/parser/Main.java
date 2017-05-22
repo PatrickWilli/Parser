@@ -1,5 +1,12 @@
 package parser;
 
+import parser.datafetcher.LocalFileReader;
+import parser.datafetcher.NetClient;
+import parser.util.Buffer;
+import parser.util.FormatDetector;
+import parser.util.URIParser;
+import parser.xml.XMLReader;
+import parser.json.JSONReader;
 import java.net.URI;
 
 

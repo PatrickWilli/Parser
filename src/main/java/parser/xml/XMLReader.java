@@ -1,4 +1,4 @@
-package parser;
+package parser.xml;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -16,6 +16,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import parser.util.Buffer;
 import parser.interfaces.Reader;
 
 public class XMLReader implements Reader

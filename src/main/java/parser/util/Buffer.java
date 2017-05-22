@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package parser;
+package parser.util;
 
 import com.opencsv.CSVReader;
 import java.io.BufferedReader;
@@ -64,15 +64,5 @@ public class Buffer
     public static String getXMLstring()
     {
         return xml;
-    }
-    
-    public static void setCSVReader(String csv)
-    {
-        csvdata = csv;
-    }
-    
-    public static String getCSVReader()
-    {
-        return csvdata;
     }
 }

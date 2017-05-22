@@ -1,4 +1,4 @@
-package parser;
+package parser.json;
 
 import java.util.ArrayList;
 import org.json.JSONObject;

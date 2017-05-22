@@ -5,9 +5,11 @@
  */
 package parser.database;
 
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Query;
-import parser.CsvData;
+import org.eclipse.persistence.internal.databaseaccess.DatabaseCall;
+import parser.csv.CsvData;
 
 /**
  *
@@ -21,15 +23,42 @@ public class ReadFromDB
         preparefordb = new PrepareForDB(host, port, database, username, password);
     }
     
-    public void readTable(String tablename)
+    
+    
+    public List<Object> gettables()
     {
-        Query query = preparefordb.getEntityManager().createNativeQuery("SELECT * FROM " + tablename, CsvData.class);     
-        FetchedDataBuffer.setFetchedDataFromTable(query.getResultList());
+        Query query = preparefordb.getEntityManager().createNativeQuery("SHOW TABLES FROM " + DBCredentials.DATABASE);
+        return query.getResultList();
     }
     
-    public void printtables()
+    public void closeconnection()
     {
-        
-        
+       preparefordb.getEntityManager().close();
+       preparefordb.getEntityManagetFactory().close(); 
+    }
+    /**
+     * 
+     * @param table
+     * @return list of objects, or null if table does not exist 
+     */
+    public List<Object> fetchDataFromTable(String table)
+    {
+        try
+        {
+            if(table.equalsIgnoreCase("csvdata"))
+            {   
+                Query query = preparefordb.getEntityManager().createNativeQuery("SELECT * FROM " + table, CsvData.class);
+                return query.getResultList();
+            }
+            else
+            {
+                Query query = preparefordb.getEntityManager().createNativeQuery("SELECT * FROM " + table);
+                return query.getResultList();
+            }
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
     }
 }

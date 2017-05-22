@@ -1,4 +1,4 @@
-package parser;
+package parser.util;
 
 import java.io.File;
 import java.net.URI;

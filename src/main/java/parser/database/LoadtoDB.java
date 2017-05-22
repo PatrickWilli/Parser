@@ -6,8 +6,8 @@
 package parser.database;
 
 import javax.persistence.EntityManager;
-import parser.Buffer;
-import parser.CsvData;
+import parser.util.Buffer;
+import parser.csv.CsvData;
 
 /**
  *
@@ -25,11 +25,19 @@ public class LoadtoDB
     
     public boolean persist()
     {
-        EntityManager entitymanager = preparefordb.getEntityManager();
-        entitymanager.persist(new CsvData(description, Buffer.getBufferedString()));
-        entitymanager.getTransaction().commit();
-        entitymanager.close();
-        preparefordb.getEntityManagetFactory().close();
-        return true;
+        try
+        {
+            EntityManager entitymanager = preparefordb.getEntityManager();
+            entitymanager.persist(new CsvData(description, Buffer.getBufferedString()));
+            entitymanager.getTransaction().commit();
+            entitymanager.close();
+            preparefordb.getEntityManagetFactory().close();
+            return true;
+        }
+        catch(Exception e)
+        {
+            return false;
+        }
+        
     }
 }

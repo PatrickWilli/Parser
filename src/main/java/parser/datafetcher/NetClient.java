@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package parser;
+package parser.datafetcher;
 
+import parser.util.Buffer;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -69,7 +70,7 @@ public class NetClient
     }
     private void fetchFromHttps()
     {
-             try
+        try
         {
             HttpsURLConnection conn = (HttpsURLConnection)uri.toURL().openConnection();
             conn.setRequestMethod("GET");

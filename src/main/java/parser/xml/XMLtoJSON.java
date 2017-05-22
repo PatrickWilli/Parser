@@ -1,4 +1,4 @@
-package parser;
+package parser.xml;
 
 import org.json.XML;
 import parser.interfaces.Converter;
